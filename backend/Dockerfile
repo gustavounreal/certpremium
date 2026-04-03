@@ -1,5 +1,5 @@
 # Image base para icialização do projeto
-FROM python:3.12-slim
+FROM python:3.14-slim
 
 #Previne criação de arquivos .pyc e buffer de output
 ENV PYTHONDONTWRITEBYTECODE=1
