@@ -1,0 +1,35 @@
+rules:
+  # Detecta secrets hardcoded
+  - id: hardcoded-secret
+    pattern-either:
+      - pattern: SECRET_KEY = "..."
+      - pattern: PASSWORD = "..."
+      - pattern: API_KEY = "..."
+    message: "Possível secret hardcoded detectado"
+    languages: [python]
+    severity: ERROR
+
+  # Detecta uso de eval (perigoso)
+  - id: dangerous-eval
+    pattern: eval(...)
+    message: "Uso de eval() pode permitir execução de código arbitrário"
+    languages: [python]
+    severity: ERROR
+
+  # Detecta debug=True em produção
+  - id: debug-enabled
+    pattern: DEBUG = True
+    message: "DEBUG deve estar desabilitado em produção"
+    languages: [python]
+    severity: WARNING
+```
+
+**PASSO 3 — Teste localmente (opcional, mas recomendado):**
+```bash
+# Instale o Semgrep
+pip install semgrep
+
+# Execute o scan
+cd ~/certpremium
+semgrep --config=auto backend/
+
