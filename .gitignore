@@ -1,0 +1,53 @@
+# === SEGREDOS (NUNCA COMMITAR!) ===
+.env
+.env.local
+.env.production
+*.pem
+*.key
+*.crt
+id_rsa*
+
+# === Nginx Proxy Manager (contém chaves privadas!) ===
+nginx/data/
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# === Django ===
+db.sqlite3
+db.sqlite3-journal
+/static/
+/media/
+*.pot
+local_settings.py
+
+# === IDEs ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# === Docker ===
+docker-compose.override.yml
+.dockerignore
+
+# === Outros ===
+*.bak
+*.tmp
+docs/
