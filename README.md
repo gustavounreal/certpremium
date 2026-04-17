@@ -1,162 +1,180 @@
-# CertPremium - Secure Security+ Study Platform
+# CERTPREMIUM - SECURE SECURITY+ STUDY PLATFORM
 
-Plataforma de estudos para certificação CompTIA Security+ (SY0-701) com foco em segurança aplicada, DevSecOps e detecção de ameaças.
+Plataforma de estudos para certificação CompTIA Security+ (SY0-701) com foco em cibersegurança aplicada, DevSecOps e detecção de ameaças.
 
 ---
 
-VISÃO GERAL
+STATUS DO PROJETO
 
-O CertPremium é um projeto prático desenvolvido para demonstrar competências reais em cibersegurança, incluindo:
+- CI/CD: Security Pipeline ativo (GitHub Actions)
+- Security Model: OWASP Top 10 aplicado
+- DevSecOps: Implementado com validações automatizadas
+- Threat Modeling: STRIDE
 
-- Proteção de aplicações web (OWASP Top 10)
+---
+
+VISAO GERAL
+
+O CertPremium e um projeto pratico desenvolvido para demonstrar competencias reais em ciberseguranca moderna, incluindo:
+
+- Protecao de aplicacoes web (OWASP Top 10)
 - Hardening de infraestrutura Linux
-- Monitoramento e análise de eventos de segurança
-- Pipeline DevSecOps com validações automatizadas
+- Monitoramento e analise de eventos de seguranca (SOC-like)
+- Pipeline DevSecOps com validacoes automatizadas (CI/CD Security)
 
-Mais do que uma plataforma de estudos, este projeto funciona como um laboratório de segurança aplicado.
+O projeto funciona como um laboratorio de seguranca aplicado, integrando desenvolvimento seguro e praticas de seguranca ofensiva e defensiva.
 
 ---
 
 ARQUITETURA
 
 Flutter (Mobile)
-   ↓ HTTPS
-Nginx (Reverse Proxy + TLS)
-   ↓
-Django (REST API + Auth)
-   ↓
+↓ HTTPS
+Nginx (Reverse Proxy + TLS 1.3)
+↓
+Django (REST API + Authentication JWT)
+↓
 PostgreSQL
 
-Stack:
-- Backend: Django + DRF + JWT
+Stack tecnologica:
+
+- Backend: Django + Django REST Framework + JWT
 - Database: PostgreSQL
 - Proxy: Nginx (hardened)
-- Infra: Docker Compose
+- Infraestrutura: Docker Compose
 - Mobile: Flutter
 
 ---
 
-SEGURANÇA IMPLEMENTADA
+SEGURANCA IMPLEMENTADA
 
-Infraestrutura:
-- Hardening de VPS (Ubuntu 24.04 - CIS Benchmark)
-- Firewall (UFW)
-- Proteção contra brute force (Fail2ban)
-- IDS/IPS com CrowdSec
-- SSH com chaves ED25519
+INFRAESTRUTURA (HARDENING)
 
-Aplicação (OWASP Top 10):
-- Proteção contra SQL Injection (ORM)
-- Proteção contra XSS
-- Controle de acesso com JWT
-- Prevenção de IDOR
-- Validação de entrada
+- Ubuntu 24.04 com baseline CIS
+- Firewall UFW configurado
+- Fail2ban para protecao contra brute force
+- CrowdSec como IDS/IPS
+- SSH com autenticacao por chave ED25519 (password disabled)
 
-Comunicação:
-- HTTPS obrigatório (TLS 1.3)
+SEGURANCA NA APLICACAO (OWASP TOP 10)
 
-Containers:
-- Execução com usuário não-root
-- Scan com Trivy
+- Protecao contra SQL Injection utilizando ORM
+- Protecao contra Cross-Site Scripting (XSS)
+- Controle de acesso baseado em JWT
+- Prevencao de IDOR (Insecure Direct Object Reference)
+- Validacao de entrada em todas as APIs
 
-DevSecOps:
-- Dependency Security (Dependabot)
-- SAST (Semgrep) + upload SARIF (GitHub Code Scanning)
-- Dependency & Container Scanning (Trivy)
-- Code Scanning (CodeQL)
+COMUNICACAO SEGURA
+
+- HTTPS obrigatorio
+- TLS 1.3 habilitado
+- Reverse proxy com Nginx hardening
+
+CONTEINERES
+
+- Execucao com usuario nao-root
+- Boas praticas de seguranca em Docker
+- Scan de imagens com Trivy
 
 ---
 
-CI/CD SECURITY EVIDENCE
+DEVSECOPS PIPELINE (CI/CD SECURITY)
 
-Esta seção demonstra a implementação de um **Security Pipeline** integrado ao fluxo de CI/CD, com foco em detecção de vulnerabilidades, automação de segurança e validação contínua do código e da infraestrutura.
+O projeto implementa um pipeline de seguranca integrado ao CI/CD, funcionando como um security gate automatizado.
+
+FLUXO DO PIPELINE (RESUMO)
+
+Commit / Pull Request
+↓
+GitHub Actions CI
+↓
+SAST (Semgrep)
+↓
+Dependency Scan (Trivy)
+↓
+Container Scan (Trivy)
+↓
+Code Scanning (CodeQL)
+↓
+Relatorios e evidencias de seguranca
+
+CONTROLES E EVIDENCIAS (O QUE EXISTE NO REPO)
 
 1. Dependency Security (Dependabot)
 
-O projeto utiliza Dependabot para automação de atualização de dependências e monitoramento contínuo de vulnerabilidades conhecidas (CVEs).
+- Atualizacao automatica de dependencias (pip, Docker, GitHub Actions)
+- PRs automaticos com labels de dependencias/seguranca
 
-- Atualizações automáticas de pacotes Python (requirements em `backend/`)
-- Atualizações de GitHub Actions
-- Atualizações relacionadas a Docker/Dockerfile no `backend/`
+Evidencia:
 
-Evidência:
-- Configuração em `.github/dependabot.yml`
-- PRs automáticos com labels `dependencies`/`security`
+- `.github/dependabot.yml`
 
-2. SAST (Static Application Security Testing) — Semgrep
+2. SAST (Semgrep)
 
-O SAST roda no pipeline de CI para detectar padrões inseguros em Python/Django sem executar a aplicação.
+- Analise estatica de codigo em Python/Django
+- Gera relatorio SARIF e publica no GitHub Security (Code scanning)
 
-Evidência:
-- Workflow `.github/workflows/ci.yml` (job `sast`)
-- Geração de `semgrep.sarif` e upload via `github/codeql-action/upload-sarif` para a aba **Security → Code scanning**
+Evidencia:
 
-3. Dependency & Container Scanning — Trivy
+- `.github/workflows/ci.yml` (job `sast`)
 
-O pipeline utiliza Trivy para analisar vulnerabilidades em dependências e em imagens Docker.
+Observacao:
 
-Evidência:
-- Workflow `.github/workflows/ci.yml` (jobs `dependency-scan` e `docker-scan`)
-- Pipeline configurado para falhar em achados `HIGH/CRITICAL` (exit-code 1)
+- O Semgrep atualmente publica evidencias (SARIF) e nao bloqueia o pipeline em achados (configurado com `|| true`).
 
-4. Code Scanning (CodeQL + GitHub Security)
+3. Dependency e Container Scanning (Trivy)
 
-Integração com GitHub CodeQL para análise semântica avançada do código.
+- Scan de vulnerabilidades no filesystem do repo e na imagem Docker
+- Pipeline configurado para falhar em achados `HIGH/CRITICAL` nos scans principais
 
-Evidência:
-- Workflow `.github/workflows/codeql.yml`
-- Resultados visíveis na aba **Security → Code scanning**
+Evidencia:
 
-5. Security Automation Pipeline (CI/CD Enforcement)
+- `.github/workflows/ci.yml` (jobs `dependency-scan` e `docker-scan`)
 
-O pipeline funciona como um **security gate**:
+4. Code Scanning (CodeQL)
 
-Fluxo:
-- Commit/PR → GitHub Actions
-- Lint/Checks
-- SAST (Semgrep + SARIF)
-- Scans de dependências e containers (Trivy)
-- Code scanning (CodeQL)
+- Analise semantica do codigo e publicacao na aba Security
 
-Resultado:
-- Detecção automática de vulnerabilidades
-- Evidências auditáveis (logs e SARIF)
-- Base para práticas contínuas de DevSecOps
+Evidencia:
+
+- `.github/workflows/codeql.yml`
 
 ---
 
 THREAT MODEL (STRIDE)
 
-- Spoofing → autenticação JWT
-- Tampering → validação de dados
-- Repudiation → logs
-- Information Disclosure → criptografia
-- DoS → rate limiting / Fail2ban
-- Privilege Escalation → controle de acesso
+- Spoofing: autenticacao JWT
+- Tampering: validacao de dados
+- Repudiation: logging estruturado
+- Information Disclosure: criptografia e TLS
+- Denial of Service: rate limiting e Fail2ban
+- Privilege Escalation: controle de acesso e RBAC
 
 ---
 
-MONITORAMENTO (SOC)
+MONITORAMENTO (SOC-LIKE)
 
-- Coleta de logs
-- Detecção de acessos suspeitos
-- Base para SIEM
-- Análise inicial de eventos
+- Coleta centralizada de logs
+- Deteccao de acessos suspeitos
+- Analise de eventos de seguranca
+- Base inicial para SIEM
+- Identificacao de IPs e padroes de acesso
 
 ---
 
-ESTRUTURA
+ESTRUTURA DO PROJETO
 
-certpremium/
-- backend/
-- nginx/
-- .github/workflows/
-- docker-compose.yml
+- `backend/`
+- `nginx/`
+- `.github/workflows/`
+- `docker-compose.yml`
+- `README.md`
 
 ---
 
 QUICK START
 
+```bash
 git clone https://github.com/gustavounreal/certpremium.git
 cd certpremium
 
@@ -165,64 +183,64 @@ docker compose up -d
 
 docker compose exec backend python manage.py migrate
 docker compose exec backend python manage.py createsuperuser
+```
 
 ---
 
 ACESSO
 
-API: http://localhost:8000/api/
-Admin: http://localhost:8000/admin/
+- API: http://localhost:8000/api/
+- Admin: http://localhost:8000/admin/
 
 ---
 
 TESTES
 
-pytest
-flake8
-safety check
+No CI, o job de validacao executa `python manage.py check` e lint com Flake8.
 
 ---
 
 ROADMAP
 
-- Integração com SIEM
+- Integracao com SIEM (ELK / Wazuh)
 - Alertas automatizados
-- Dashboard de segurança
-- Detecção de anomalias
-- RBAC avançado
+- Deteccao de anomalias baseada em comportamento
+- RBAC avancado
+- Simulacao de ataques (red team / blue team scenario)
 
 ---
 
-COMPETÊNCIAS
+COMPETENCIAS DEMONSTRADAS
 
-- OWASP
-- Hardening Linux
-- Logs e monitoramento
-- DevSecOps
-- Threat Modeling
+- OWASP Top 10
 - Secure SDLC
+- DevSecOps (CI/CD Security)
+- Linux Hardening (CIS baseline)
+- Threat Modeling (STRIDE)
+- Log Analysis e fundamentos de SOC
+- Container Security
 
 ---
 
 OBJETIVO
 
-Projeto desenvolvido como portfólio para atuação em:
+Projeto desenvolvido como portfolio para atuacao nas areas:
 
-- SOC
-- Security Analyst
-- DevSecOps
+- SOC Analyst
+- Security Engineer Junior
+- DevSecOps Engineer Junior
 
 ---
 
 AUTOR
 
 Gustavo Macedo
-GitHub: https://github.com/gustavounreal
-LinkedIn: https://linkedin.com/in/gustavo-r-macedo-225a636a
+
+- GitHub: https://github.com/gustavounreal
+- LinkedIn: https://linkedin.com/in/gustavo-r-macedo-225a636a
 
 ---
 
-LICENÇA
+LICENCA
 
-MIT
-
+MIT License
