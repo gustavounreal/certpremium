@@ -2,7 +2,7 @@ import logging
 import psutil
 from django.utils import timezone
 from django.shortcuts import render
-from django.contrib.admin.views.decorators import staff_member.required
+from django.contrib.admin.views.decorators import staff_member_required
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
