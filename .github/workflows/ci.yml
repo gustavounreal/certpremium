@@ -13,7 +13,7 @@ permissions:
 
 env:
   PYTHON_VERSION: "3.12"
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  
 
 jobs:
   # === TESTES E LINT ====
@@ -37,10 +37,10 @@ jobs:
           --health-retries 5
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
        
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
@@ -48,7 +48,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd backend
-           pip install -r requirements.txt
+          pip install -r requirements.txt
           pip install pytest pytest-django flake8
 
       - name: Run Flake8 (Lint)
@@ -76,10 +76,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
         
@@ -140,7 +140,7 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build Docker image
         run: |
@@ -148,7 +148,7 @@ jobs:
           docker build -t certpremium-backend:${{ github.sha }} .
 
       - name: Run Trivy on Docker image
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.28.0
         with:
           image-ref: 'certpremium-backend:${{ github.sha }}'
           format: 'table'
