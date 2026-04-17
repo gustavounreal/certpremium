@@ -1,0 +1,6 @@
+# Ignora vulnerabilidades que não se aplicam ao nosso contexto
+# Formato: CVE-XXXX-XXXXX
+
+# Exemplo (descomente se necessário):
+# CVE-2023-12345
+
