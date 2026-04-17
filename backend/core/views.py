@@ -4,9 +4,11 @@ from django.utils import timezone
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 
@@ -14,6 +16,7 @@ logger = logging.getLogger('certpremium')
 
 
 @api_view(['GET'])
+@authentication_classes([SessionAuthentication, JWTAuthentication])
 @permission_classes([IsAdminUser])
 def certmonitor_metrics(request):
     """
