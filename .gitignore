@@ -51,3 +51,4 @@ docker-compose.override.yml
 *.bak
 *.tmp
 docs/
+.gitignore/copilot-instructions.md
