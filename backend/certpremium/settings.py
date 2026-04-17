@@ -15,9 +15,11 @@ DEBUG = os.getenv("DEBUG", "0") == "1"
 
 #Hosts permitidos (ajuste para seu domínio)
 ALLOWED_HOSTS = [
-        'localhost',
-        '127.0.0.1',
-        'api.certpremium.com.br',
+
+    "45.32.174.51",
+    "localhost",
+    "127.0.0.1",
+    "api.certpremium.com.br",
         ]
 
 #=== APPS INSTALADOS ===
@@ -48,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'certpremium.urls'
@@ -69,6 +73,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'certpremium.wsgi.application'
+
+
+# === STATICS FILES (CSS, JS, IMAGENS) ===
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
 
 # === BANCO DE DADOS (via Docker Compose) ===
 DATABASES = {

@@ -7,3 +7,4 @@ python-dotenv==1.0.1
 psutil==6.1.1
 django-cors-headers==4.9.0
 python-json-logger==3.2.1
+whitenoise==6.9.0

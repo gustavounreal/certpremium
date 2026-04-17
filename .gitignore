@@ -52,3 +52,7 @@ docker-compose.override.yml
 *.tmp
 docs/
 .github/copilot-instructions.md
+
+# Django runtime
+backend/staticfiles/
+backend/logs/*.json
