@@ -1,15 +1,13 @@
 # CERTPREMIUM - SECURE SECURITY+ STUDY PLATFORM
 
+[![CI Security Pipeline](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml/badge.svg)](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/gustavounreal/certpremium/actions/workflows/codeql.yml/badge.svg)](https://github.com/gustavounreal/certpremium/actions/workflows/codeql.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![OWASP Top 10](https://img.shields.io/badge/OWASP-Top%2010-blue)
+![DevSecOps](https://img.shields.io/badge/DevSecOps-CI%2FCD%20Security-blue)
+![Threat Model STRIDE](https://img.shields.io/badge/Threat%20Model-STRIDE-blue)
+
 Plataforma de estudos para certificação CompTIA Security+ (SY0-701) com foco em cibersegurança aplicada, DevSecOps e detecção de ameaças.
-
----
-
-STATUS DO PROJETO
-
-- CI/CD: Security Pipeline ativo (GitHub Actions)
-- Security Model: OWASP Top 10 aplicado
-- DevSecOps: Implementado com validações automatizadas
-- Threat Modeling: STRIDE
 
 ---
 
