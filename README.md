@@ -1,9 +1,5 @@
 # CertPremium - Secure Security+ Study Platform
 
-[![CI Security Pipeline](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml/badge.svg)](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml)
-[![Code Scanning](https://img.shields.io/badge/code%20scanning-passing-brightgreen)](https://github.com/gustavounreal/certpremium/security/code-scanning)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
 Plataforma de estudos para certificação CompTIA Security+ (SY0-701) com foco em segurança aplicada, DevSecOps e detecção de ameaças.
 
 ---
@@ -64,10 +60,68 @@ Containers:
 - Scan com Trivy
 
 DevSecOps:
-- SAST (Semgrep)
-- DAST (OWASP ZAP)
-- Dependency Scan (Safety)
-- CI/CD com validações de segurança
+- Dependency Security (Dependabot)
+- SAST (Semgrep) + upload SARIF (GitHub Code Scanning)
+- Dependency & Container Scanning (Trivy)
+- Code Scanning (CodeQL)
+
+---
+
+CI/CD SECURITY EVIDENCE
+
+Esta seção demonstra a implementação de um **Security Pipeline** integrado ao fluxo de CI/CD, com foco em detecção de vulnerabilidades, automação de segurança e validação contínua do código e da infraestrutura.
+
+1. Dependency Security (Dependabot)
+
+O projeto utiliza Dependabot para automação de atualização de dependências e monitoramento contínuo de vulnerabilidades conhecidas (CVEs).
+
+- Atualizações automáticas de pacotes Python (requirements em `backend/`)
+- Atualizações de GitHub Actions
+- Atualizações relacionadas a Docker/Dockerfile no `backend/`
+
+Evidência:
+- Configuração em `.github/dependabot.yml`
+- PRs automáticos com labels `dependencies`/`security`
+
+2. SAST (Static Application Security Testing) — Semgrep
+
+O SAST roda no pipeline de CI para detectar padrões inseguros em Python/Django sem executar a aplicação.
+
+Evidência:
+- Workflow `.github/workflows/ci.yml` (job `sast`)
+- Geração de `semgrep.sarif` e upload via `github/codeql-action/upload-sarif` para a aba **Security → Code scanning**
+
+3. Dependency & Container Scanning — Trivy
+
+O pipeline utiliza Trivy para analisar vulnerabilidades em dependências e em imagens Docker.
+
+Evidência:
+- Workflow `.github/workflows/ci.yml` (jobs `dependency-scan` e `docker-scan`)
+- Pipeline configurado para falhar em achados `HIGH/CRITICAL` (exit-code 1)
+
+4. Code Scanning (CodeQL + GitHub Security)
+
+Integração com GitHub CodeQL para análise semântica avançada do código.
+
+Evidência:
+- Workflow `.github/workflows/codeql.yml`
+- Resultados visíveis na aba **Security → Code scanning**
+
+5. Security Automation Pipeline (CI/CD Enforcement)
+
+O pipeline funciona como um **security gate**:
+
+Fluxo:
+- Commit/PR → GitHub Actions
+- Lint/Checks
+- SAST (Semgrep + SARIF)
+- Scans de dependências e containers (Trivy)
+- Code scanning (CodeQL)
+
+Resultado:
+- Detecção automática de vulnerabilidades
+- Evidências auditáveis (logs e SARIF)
+- Base para práticas contínuas de DevSecOps
 
 ---
 

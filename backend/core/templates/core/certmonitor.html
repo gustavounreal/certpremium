@@ -43,6 +43,11 @@
             font-weight: bold;
             color: #fff;
         }
+        .metric-sm {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+        }
         .metric-label {
             color: #888;
             font-size: 12px;
@@ -50,6 +55,31 @@
         .status-healthy { color: #00ff88; }
         .status-warning { color: #ffaa00; }
         .status-critical { color: #ff4444; }
+
+        .events,
+        .alerts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-item,
+        .alert-item {
+            padding: 6px 0;
+            border-bottom: 1px solid #333;
+            font-size: 12px;
+            color: #bbb;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .event-item:last-child,
+        .alert-item:last-child { border-bottom: none; }
+
+        .alert-critical { color: #ff4444; }
+        .alert-warning { color: #ffaa00; }
+        .alert-healthy { color: #00ff88; }
         canvas { max-height: 200px; }
         .refresh-info {
             text-align: center;
@@ -61,15 +91,33 @@
 </head>
 <body>
     <div class="header">
-        <h1>🛡️ CertMonitor 360</h1>
+        <h1>CertMonitor 360</h1>
         <p>Dashboard de Segurança — Acesso Restrito</p>
     </div>
 
     <div class="grid">
         <div class="card">
             <h3>Status do Sistema</h3>
-            <div class="metric status-healthy" id="status">Healthy</div>
+            <div class="metric status-healthy" id="status">Carregando...</div>
             <div class="metric-label">Última verificação: <span id="lastCheck">--</span></div>
+            <div class="metric-label">Uptime: <span id="uptime">--</span></div>
+            <div class="metric-label" id="statusHint">Motivo: --</div>
+        </div>
+
+        <div class="card">
+            <h3>Alertas Ativos</h3>
+            <div id="alerts">Carregando...</div>
+        </div>
+
+        <div class="card">
+            <h3>Segurança</h3>
+            <div class="metric-sm" id="anomalyScore">--</div>
+            <div class="metric-label" id="anomalyLabel">Pontuação de anomalia</div>
+            <div class="metric-label">Logins falhos (5m): <span id="failedLogins5m">--</span></div>
+            <div class="metric-label">Top IPs (login falho 1h): <span id="topFailedIps">--</span></div>
+            <div class="metric-label">IPs bloqueados: <span id="blockedIpsCount">--</span></div>
+            <div class="metric-label">Req/min (1m): <span id="reqRate1m">--</span> • Spike: <span id="spikeFactor">--</span>x</div>
+            <div class="metric-label">Top IPs (requests 1m): <span id="topReqIps">--</span></div>
         </div>
 
         <div class="card">
@@ -88,21 +136,48 @@
         </div>
 
         <div class="card">
-            <h3>Disco</h3>
-            <div class="metric" id="diskPercent">--%</div>
+            <h3>Swap</h3>
+            <div class="metric" id="swapPercent">--%</div>
             <div class="metric-label">
-                <span id="diskFree">--</span> GB livre
+                <span id="swapUsed">--</span> MB / <span id="swapTotal">--</span> MB
             </div>
         </div>
 
         <div class="card">
-            <h3>Containers Docker</h3>
-            <div id="containers">Carregando...</div>
+            <h3>Disco</h3>
+            <div class="metric" id="diskPercent">--%</div>
+            <div class="metric-label">
+                <span id="diskFree">--</span> GB livre / <span id="diskTotal">--</span> GB
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Carga do Sistema</h3>
+            <div class="metric-sm" id="loadAvg">--</div>
+            <div class="metric-label">1m / 5m / 15m</div>
+        </div>
+
+        <div class="card">
+            <h3>Rede</h3>
+            <div class="metric-sm" id="net">--</div>
+            <div class="metric-label">Desde boot</div>
+        </div>
+
+        <div class="card">
+            <h3>Serviços</h3>
+            <div class="metric-label">Banco: <span id="dbStatus">--</span> <span id="dbLatency"></span></div>
+            <div class="metric-label">API: <span id="apiStatus">--</span></div>
+            <div class="metric-label">Processo: <span id="procRss">--</span> MB • <span id="procThreads">--</span> threads</div>
         </div>
 
         <div class="card">
             <h3>Últimos Eventos</h3>
             <div id="events">Carregando...</div>
+        </div>
+
+        <div class="card">
+            <h3>Resumo SIEM</h3>
+            <div id="siem">Carregando...</div>
         </div>
     </div>
 
@@ -163,12 +238,184 @@
             }
         });
 
+        function setText(id, text) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = text;
+        }
+
+        function formatDuration(seconds) {
+            if (seconds == null) return '--';
+            const s = Math.max(0, Math.floor(seconds));
+            const days = Math.floor(s / 86400);
+            const hours = Math.floor((s % 86400) / 3600);
+            const mins = Math.floor((s % 3600) / 60);
+
+            if (days > 0) return `${days}d ${hours}h`;
+            if (hours > 0) return `${hours}h ${mins}min`;
+            return `${mins}min`;
+        }
+
+        function setStatus(statusCode, statusLabel, statusHint) {
+            const statusEl = document.getElementById('status');
+            if (!statusEl) return;
+
+            const map = {
+                healthy: 'status-healthy',
+                warning: 'status-warning',
+                critical: 'status-critical'
+            };
+
+            statusEl.className = `metric ${map[statusCode] || 'status-critical'}`;
+            statusEl.textContent = statusLabel || 'Erro';
+
+            setText('statusHint', statusHint ? String(statusHint) : 'Motivo: --');
+        }
+
+        function renderAlerts(reasons) {
+            const el = document.getElementById('alerts');
+            if (!el) return;
+
+            el.innerHTML = '';
+
+            if (!Array.isArray(reasons) || reasons.length === 0) {
+                el.textContent = 'Nenhum alerta ativo';
+                return;
+            }
+
+            const ul = document.createElement('ul');
+            ul.className = 'alerts';
+
+            for (const r of reasons) {
+                const li = document.createElement('li');
+                li.className = 'alert-item';
+
+                const sev = r?.severity ? String(r.severity) : '';
+                const title = r?.title ? String(r.title) : 'Alerta';
+                const detail = r?.detail ? String(r.detail) : '';
+
+                if (sev === 'critical') li.classList.add('alert-critical');
+                else if (sev === 'warning') li.classList.add('alert-warning');
+                else li.classList.add('alert-healthy');
+
+                const prefix = sev === 'critical' ? 'CRÍTICO' : (sev === 'warning' ? 'ATENÇÃO' : 'OK');
+                const text = [prefix, title, detail].filter(Boolean).join(' — ');
+                li.textContent = text;
+
+                ul.appendChild(li);
+            }
+
+            el.appendChild(ul);
+        }
+
+        function renderSecurity(sec) {
+            setText('failedLogins5m', sec?.failed_login_attempts_5m ?? '--');
+
+            const topFailed = Array.isArray(sec?.top_failed_login_ips_1h) ? sec.top_failed_login_ips_1h : [];
+            const topFailedText = topFailed.map(x => `${x.ip}(${x.count})`).join(' • ') || '--';
+            setText('topFailedIps', topFailedText);
+
+            const blocked = sec?.blocked_ips;
+            const blockedCount = (blocked && typeof blocked === 'object') ? (blocked.count ?? 0) : 0;
+            setText('blockedIpsCount', blockedCount);
+
+            setText('reqRate1m', sec?.request_rate_1m ?? '--');
+
+            const spike = sec?.request_spike_factor;
+            setText('spikeFactor', spike == null ? '--' : spike);
+
+            const topReq = Array.isArray(sec?.top_request_ips_1m) ? sec.top_request_ips_1m : [];
+            const topReqText = topReq.map(x => `${x.ip}(${x.count})`).join(' • ') || '--';
+            setText('topReqIps', topReqText);
+
+            const score = sec?.anomaly_score;
+            const label = sec?.anomaly_label;
+            setText('anomalyScore', score == null ? '--' : score);
+            setText('anomalyLabel', label ? `Anomalia: ${label}` : 'Anomalia');
+        }
+
+        function renderSiemSummary(siem) {
+            const el = document.getElementById('siem');
+            if (!el) return;
+
+            el.innerHTML = '';
+
+            if (!siem || siem.available !== true) {
+                const msg = siem?.message ? String(siem.message) : 'Sem dados de log';
+                el.textContent = msg;
+                return;
+            }
+
+            const ul = document.createElement('ul');
+            ul.className = 'events';
+
+            const levels = siem.levels || {};
+            const order = ['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG'];
+            const levelsText = order
+                .filter(k => levels[k])
+                .map(k => `${k} ${levels[k]}`)
+                .join(' • ') || '--';
+
+            const topEvents = Array.isArray(siem.top_events) ? siem.top_events : [];
+            const topEventsText = topEvents.map(e => `${e.event} (${e.count})`).join(' • ') || '--';
+
+            const topIps = Array.isArray(siem.top_ips) ? siem.top_ips : [];
+            const topIpsText = topIps.map(i => `${i.ip} (${i.count})`).join(' • ') || '--';
+
+            const items = [
+                `Fonte: ${siem.log_path} (${siem.parsed_lines}/${siem.sample_lines} linhas parseadas)`,
+                `Níveis: ${levelsText}`,
+                siem.last_error_at ? `Último erro: ${siem.last_error_at}` : null,
+                `Top eventos: ${topEventsText}`,
+                `Top IPs: ${topIpsText}`,
+            ].filter(Boolean);
+
+            for (const t of items) {
+                const li = document.createElement('li');
+                li.className = 'event-item';
+                li.textContent = String(t);
+                ul.appendChild(li);
+            }
+
+            el.appendChild(ul);
+        }
+
+        function renderEvents(events) {
+            const el = document.getElementById('events');
+            if (!el) return;
+
+            el.innerHTML = '';
+
+            if (!Array.isArray(events) || events.length === 0) {
+                el.textContent = 'Sem eventos recentes';
+                return;
+            }
+
+            const ul = document.createElement('ul');
+            ul.className = 'events';
+
+            for (const ev of events) {
+                const li = document.createElement('li');
+                li.className = 'event-item';
+
+                const at = ev?.at ? String(ev.at) : '';
+                const level = ev?.level ? String(ev.level) : '';
+                const name = ev?.event ? String(ev.event) : '';
+                const msg = ev?.message ? String(ev.message) : '';
+
+                const text = [at, level, name, msg].filter(Boolean).join(' — ');
+                li.textContent = text || '(evento)';
+
+                ul.appendChild(li);
+            }
+
+            el.appendChild(ul);
+        }
+
         // Função para buscar métricas
         async function fetchMetrics() {
             try {
                 const response = await fetch('/api/v1/monitor/', {
                     // Dashboard é servido para staff via sessão do Django.
-                    // Não envie "Authorization: Bearer" vazio (isso quebra o JWT auth).
                     credentials: 'same-origin',
                     headers: {
                         'Accept': 'application/json'
@@ -188,15 +435,47 @@
 
                 const data = await response.json();
 
-                // Atualiza valores
-                document.getElementById('status').textContent = data.status;
-                document.getElementById('cpuPercent').textContent = data.cpu_percent + '%';
-                document.getElementById('ramPercent').textContent = data.ram_percent + '%';
-                document.getElementById('ramUsed').textContent = data.ram_used_mb;
-                document.getElementById('ramTotal').textContent = data.ram_total_mb;
-                document.getElementById('diskPercent').textContent = data.disk_percent + '%';
-                document.getElementById('diskFree').textContent = data.disk_free_gb;
-                document.getElementById('lastCheck').textContent = new Date().toLocaleTimeString();
+                setStatus(data.status_code, data.status_label, data.status_hint);
+                setText('lastCheck', new Date().toLocaleTimeString());
+
+                setText('cpuPercent', `${data.cpu_percent}%`);
+                setText('ramPercent', `${data.ram_percent}%`);
+                setText('ramUsed', data.ram_used_mb);
+                setText('ramTotal', data.ram_total_mb);
+
+                setText('swapPercent', `${data.swap_percent}%`);
+                setText('swapUsed', data.swap_used_mb);
+                setText('swapTotal', data.swap_total_mb);
+
+                setText('diskPercent', `${data.disk_percent}%`);
+                setText('diskFree', data.disk_free_gb);
+                setText('diskTotal', data.disk_total_gb);
+
+                setText('uptime', formatDuration(data.uptime_seconds));
+
+                const la = [data.load_avg_1m, data.load_avg_5m, data.load_avg_15m]
+                    .map(v => (v == null ? '--' : v))
+                    .join(' / ');
+                setText('loadAvg', la);
+
+                setText('net', `RX ${data.net_rx_mb} MB • TX ${data.net_tx_mb} MB`);
+
+                setText('apiStatus', 'OK');
+                if (data.db_ok) {
+                    setText('dbStatus', 'OK');
+                    setText('dbLatency', data.db_latency_ms != null ? `(${data.db_latency_ms} ms)` : '');
+                } else {
+                    setText('dbStatus', 'Falha');
+                    setText('dbLatency', '');
+                }
+
+                setText('procRss', data.process_rss_mb);
+                setText('procThreads', data.process_threads);
+
+                renderEvents(data.events);
+                renderAlerts(data.status_reasons);
+                renderSecurity(data.security);
+                renderSiemSummary(data.siem_summary);
 
                 // Atualiza gráficos
                 cpuHistory.push(data.cpu_percent);
@@ -212,23 +491,30 @@
                 ramChart.data.datasets[0].data = ramHistory;
                 ramChart.update('none');
 
-                // Status color
-                const statusEl = document.getElementById('status');
-                if (data.ram_percent > 90 || data.cpu_percent > 90) {
-                    statusEl.className = 'metric status-critical';
-                    statusEl.textContent = 'Critical';
-                } else if (data.ram_percent > 70 || data.cpu_percent > 70) {
-                    statusEl.className = 'metric status-warning';
-                    statusEl.textContent = 'Warning';
-                } else {
-                    statusEl.className = 'metric status-healthy';
-                    statusEl.textContent = 'Healthy';
-                }
-
             } catch (error) {
                 console.error('Erro ao buscar métricas:', error);
-                document.getElementById('status').textContent = 'Erro';
-                document.getElementById('status').className = 'metric status-critical';
+                setStatus('critical', 'Erro', 'Motivo: falha ao buscar métricas');
+                setText('apiStatus', 'Erro');
+                setText('dbStatus', '--');
+                setText('dbLatency', '');
+
+                const eventsEl = document.getElementById('events');
+                if (eventsEl) eventsEl.textContent = 'Erro';
+
+                const alertsEl = document.getElementById('alerts');
+                if (alertsEl) alertsEl.textContent = 'Erro';
+
+                const siemEl = document.getElementById('siem');
+                if (siemEl) siemEl.textContent = 'Erro';
+
+                setText('failedLogins5m', '--');
+                setText('topFailedIps', '--');
+                setText('blockedIpsCount', '--');
+                setText('reqRate1m', '--');
+                setText('spikeFactor', '--');
+                setText('topReqIps', '--');
+                setText('anomalyScore', '--');
+                setText('anomalyLabel', 'Anomalia');
             }
         }
 

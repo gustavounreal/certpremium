@@ -50,7 +50,9 @@ docker-compose.override.yml
 # === Outros ===
 *.bak
 *.tmp
+
 docs/
+
 .github/copilot-instructions.md
 
 # Django runtime
