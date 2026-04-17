@@ -146,7 +146,7 @@ THREAT MODEL (STRIDE)
 - Repudiation: logging estruturado
 - Information Disclosure: criptografia e TLS
 - Denial of Service: rate limiting e Fail2ban
-- Privilege Escalation: controle de acesso e RBAC
+- Elevation of Privilege: controle de acesso e RBAC
 
 ---
 
