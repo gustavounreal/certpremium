@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CertMonitor 360</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: #0a0a0a; 
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 { color: #00ff88; }
+        .header p { color: #888; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+        .card h3 { 
+            color: #00ff88; 
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .metric {
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .metric-label {
+            color: #888;
+            font-size: 12px;
+        }
+        .status-healthy { color: #00ff88; }
+        .status-warning { color: #ffaa00; }
+        .status-critical { color: #ff4444; }
+        canvas { max-height: 200px; }
+        .refresh-info {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛡️ CertMonitor 360</h1>
+        <p>Dashboard de Segurança — Acesso Restrito</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Status do Sistema</h3>
+            <div class="metric status-healthy" id="status">Healthy</div>
+            <div class="metric-label">Última verificação: <span id="lastCheck">--</span></div>
+        </div>
+
+        <div class="card">
+            <h3>CPU</h3>
+            <div class="metric" id="cpuPercent">--%</div>
+            <canvas id="cpuChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h3>Memória RAM</h3>
+            <div class="metric" id="ramPercent">--%</div>
+            <div class="metric-label">
+                <span id="ramUsed">--</span> MB / <span id="ramTotal">--</span> MB
+            </div>
+            <canvas id="ramChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h3>Disco</h3>
+            <div class="metric" id="diskPercent">--%</div>
+            <div class="metric-label">
+                <span id="diskFree">--</span> GB livre
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Containers Docker</h3>
+            <div id="containers">Carregando...</div>
+        </div>
+
+        <div class="card">
+            <h3>Últimos Eventos</h3>
+            <div id="events">Carregando...</div>
+        </div>
+    </div>
+
+    <div class="refresh-info">
+        Atualização automática a cada 5 segundos
+    </div>
+
+    <script>
+        // Histórico para gráficos
+        const cpuHistory = [];
+        const ramHistory = [];
+        const maxHistory = 20;
+
+        // Inicializa gráficos
+        const cpuChart = new Chart(document.getElementById('cpuChart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'CPU %',
+                    data: [],
+                    borderColor: '#00ff88',
+                    backgroundColor: 'rgba(0, 255, 136, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { min: 0, max: 100, grid: { color: '#333' } },
+                    x: { display: false }
+                }
+            }
+        });
+
+        const ramChart = new Chart(document.getElementById('ramChart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'RAM %',
+                    data: [],
+                    borderColor: '#00aaff',
+                    backgroundColor: 'rgba(0, 170, 255, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { min: 0, max: 100, grid: { color: '#333' } },
+                    x: { display: false }
+                }
+            }
+        });
+
+        // Função para buscar métricas
+        async function fetchMetrics() {
+            try {
+                const response = await fetch('/api/v1/monitor/', {
+                    headers: {
+                        'Authorization': 'Bearer {{ token }}'
+                    }
+                });
+                const data = await response.json();
+
+                // Atualiza valores
+                document.getElementById('status').textContent = data.status;
+                document.getElementById('cpuPercent').textContent = data.cpu_percent + '%';
+                document.getElementById('ramPercent').textContent = data.ram_percent + '%';
+                document.getElementById('ramUsed').textContent = data.ram_used_mb;
+                document.getElementById('ramTotal').textContent = data.ram_total_mb;
+                document.getElementById('diskPercent').textContent = data.disk_percent + '%';
+                document.getElementById('diskFree').textContent = data.disk_free_gb;
+                document.getElementById('lastCheck').textContent = new Date().toLocaleTimeString();
+
+                // Atualiza gráficos
+                cpuHistory.push(data.cpu_percent);
+                ramHistory.push(data.ram_percent);
+                if (cpuHistory.length > maxHistory) cpuHistory.shift();
+                if (ramHistory.length > maxHistory) ramHistory.shift();
+
+                cpuChart.data.labels = cpuHistory.map((_, i) => i);
+                cpuChart.data.datasets[0].data = cpuHistory;
+                cpuChart.update('none');
+
+                ramChart.data.labels = ramHistory.map((_, i) => i);
+                ramChart.data.datasets[0].data = ramHistory;
+                ramChart.update('none');
+
+                // Status color
+                const statusEl = document.getElementById('status');
+                if (data.ram_percent > 90 || data.cpu_percent > 90) {
+                    statusEl.className = 'metric status-critical';
+                    statusEl.textContent = 'Critical';
+                } else if (data.ram_percent > 70 || data.cpu_percent > 70) {
+                    statusEl.className = 'metric status-warning';
+                    statusEl.textContent = 'Warning';
+                } else {
+                    statusEl.className = 'metric status-healthy';
+                    statusEl.textContent = 'Healthy';
+                }
+
+            } catch (error) {
+                console.error('Erro ao buscar métricas:', error);
+                document.getElementById('status').textContent = 'Erro';
+                document.getElementById('status').className = 'metric status-critical';
+            }
+        }
+
+        // Atualiza a cada 5 segundos
+        fetchMetrics();
+        setInterval(fetchMetrics, 5000);
+    </script>
+</body>
+</html>
+

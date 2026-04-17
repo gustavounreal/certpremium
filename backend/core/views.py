@@ -1,9 +1,14 @@
 import logging
 import psutil
 from django.utils import timezone
+from django.shortcuts import render
+from django.contrib.admin.views.decorators import staff_member.required
+
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
+
+
 
 logger = logging.getLogger('certpremium')
 
@@ -103,3 +108,13 @@ def user_data_delete(request):
         'status': 'success',
         'message': 'Dados removidos conforme LGPD Art. 18'
     })
+
+
+
+@staff_member_required
+def certmonitor_dashboard(request):
+    """
+    Dashboard visual do CertMonitor 360.
+    Apenas staff pode acessar.
+    """
+    return render(request, 'core/certmonitor.html')
