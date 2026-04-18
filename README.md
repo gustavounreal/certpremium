@@ -1,4 +1,4 @@
-# CERTPREMIUM - SECURE SECURITY+ STUDY PLATFORM
+<img width="1374" height="418" alt="logo3" src="https://github.com/user-attachments/assets/b8692bb9-38ba-4fa0-9727-4f497d72a4b4" /># CERTPREMIUM - SECURE SECURITY+ STUDY PLATFORM
 
 [![CI Security Pipeline](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml/badge.svg)](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/gustavounreal/certpremium/actions/workflows/codeql.yml/badge.svg)](https://github.com/gustavounreal/certpremium/actions/workflows/codeql.yml)
@@ -11,9 +11,9 @@ Plataforma de estudos para certificação CompTIA Security+ (SY0-701) com foco e
 
 ---
 
-VISAO GERAL
+SOBRE O PROJETO
 
-O CertPremium e um projeto pratico desenvolvido para demonstrar competencias reais em ciberseguranca moderna, incluindo:
+Esse projeto prático foi desenvolvido para demonstrar competencias reais em ciberseguranca moderna, incluindo:
 
 - Protecao de aplicacoes web (OWASP Top 10)
 - Hardening de infraestrutura Linux
@@ -23,6 +23,31 @@ O CertPremium e um projeto pratico desenvolvido para demonstrar competencias rea
 O projeto funciona como um laboratorio de seguranca aplicado, integrando desenvolvimento seguro e praticas de seguranca ofensiva e defensiva.
 
 ---
+
+VISAO GERAL E SCREENSHOTS
+
+O CertPremium foi concebido como uma plataforma multi-certificação, utilizando o exame CompTIA Security+ (SY0-701) como projeto piloto para demonstrar um ecossistema completo de aprendizado e segurança aplicada.
+Abaixo estão os principais fluxos visuais do projeto:
+1. Experiência de Aprendizado (Mobile App)
+A interface móvel, desenvolvida em Flutter, foi projetada para ser limpa e direta, facilitando o consumo de conteúdo técnico denso.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/118fe134-0d75-4f6d-bf85-656b309634d0" alt="Dashboard Principal" width="284" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/0f639bf6-cfd2-4927-be8d-2ec15786b174" alt="Visão do Domínio" width="280" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/8fbf18a1-e09e-4719-bd1b-9d8a0d5519ad" alt="Aulas do Tópico" width="280" />
+</p>
+
+
+  * Dashboard Intuitivo: Exibe o status do exame, progresso e acesso rápido a estudos e simulados.    
+  * Organização por Domínios: O conteúdo é categorizado de acordo com os domínios oficiais da CompTIA SY0-701.    
+  * Fluxo de Tópicos: Navegação hierárquica clara de domínios para tópicos e aulas individuais.
+    
+
+<img src="https://github.com/user-attachments/assets/0551e245-3e27-4bb0-8d33-eb4ede48a082" alt="Seções da Aula"   width="280" />
+
+
 
 ARQUITETURA
 
