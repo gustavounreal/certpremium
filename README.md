@@ -1,13 +1,23 @@
 <img width="1374" height="418" alt="logo3" src="https://github.com/user-attachments/assets/b8692bb9-38ba-4fa0-9727-4f497d72a4b4" /># CERTPREMIUM - SECURE SECURITY+ STUDY PLATFORM
 
+## BADGES
+
+### Qualidade e Segurança
+
 [![CI Security Pipeline](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml/badge.svg)](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/gustavounreal/certpremium/actions/workflows/codeql.yml/badge.svg)](https://github.com/gustavounreal/certpremium/actions/workflows/codeql.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+### Licença
+
+![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)
+
+### Boas Práticas e Metodologias
+
 ![OWASP Top 10](https://img.shields.io/badge/OWASP-Top%2010-blue)
 ![DevSecOps](https://img.shields.io/badge/DevSecOps-CI%2FCD%20Security-blue)
 ![Threat Model STRIDE](https://img.shields.io/badge/Threat%20Model-STRIDE-blue)
 
-Plataforma de estudos para certificação CompTIA Security+ (SY0-701) com foco em cibersegurança aplicada, DevSecOps e detecção de ameaças.
+#Plataforma de estudos para certificação CompTIA Security+ (SY0-701) com foco em cibersegurança aplicada, DevSecOps e detecção de ameaças.
 
 ---
 
@@ -28,28 +38,122 @@ VISAO GERAL E SCREENSHOTS
 
 O CertPremium foi concebido como uma plataforma multi-certificação, utilizando o exame CompTIA Security+ (SY0-701) como projeto piloto para demonstrar um ecossistema completo de aprendizado e segurança aplicada.
 Abaixo estão os principais fluxos visuais do projeto:
-1. Experiência de Aprendizado (Mobile App)
-A interface móvel, desenvolvida em Flutter, foi projetada para ser limpa e direta, facilitando o consumo de conteúdo técnico denso.
+## 1. EXPERIÊNCIA DE APRENDIZADO (Mobile App)
+
+A interface móvel, desenvolvida em Flutter, foi projetada para ser limpa, objetiva e eficiente, facilitando o consumo de conteúdo técnico denso.
+
+---
+
+### Dashboard Intuitivo
+
+Exibe o status do exame, progresso e acesso rápido a estudos e simulados.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3f5745e4-92fc-41bd-8d15-c22e291f6883" alt="Dashboard Principal" width="280"  /> 
-   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/cf836f0a-05e9-48ad-b9ea-2427f9d25c90" alt="Visão do Domínio" width="280"  />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/a7c9d6bb-a6f3-440d-8b5f-48215defb1d0" alt="Aulas do Tópico"  width="280" />
-  
+  <img src="https://github.com/user-attachments/assets/3f5745e4-92fc-41bd-8d15-c22e291f6883" alt="Dashboard Principal" width="240"/>
+</p>
 
+---
+
+### Organização por Domínios
+
+O conteúdo é categorizado de acordo com os domínios oficiais da CompTIA SY0-701.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cf836f0a-05e9-48ad-b9ea-2427f9d25c90" alt="Visão do Domínio" width="240"/>
+</p>
+
+---
+
+### Fluxo de Tópicos
+
+Navegação hierárquica clara de domínios para tópicos e aulas individuais.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f05552ad-6385-457d-a7a1-88e4b0925a3c" alt="Conceitos Gerais" width="240"/>
+</p>
+
+---
+
+### Conteúdo Estruturado
+
+As aulas utilizam cards e seções expansíveis ("Tese Central", "Definição Operacional", "Matriz de Decisão") para organizar o conhecimento de forma didática.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6cd7d83f-0afd-45ae-83dc-fcd35e54ada3" alt="Seções da Aula" width="240"/>
+</p>
+
+---
+
+### Heurísticas Mentais & Armadilhas
+
+Seções focadas em estratégias de prova e erros comuns, cruciais para a certificação.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a7c9d6bb-a6f3-440d-8b5f-48215defb1d0" alt="Aulas do Tópico" width="240"/>
 </p>
 
 
-  * Dashboard Intuitivo: Exibe o status do exame, progresso e acesso rápido a estudos e simulados.    
-  * Organização por Domínios: O conteúdo é categorizado de acordo com os domínios oficiais da CompTIA SY0-701.    
-  * Fluxo de Tópicos: Navegação hierárquica clara de domínios para tópicos e aulas individuais.    
+## 2. CERTMONITOR 360 (Painel Administrativo / Security Dashboard)
 
-  <img src="https://github.com/user-attachments/assets/6cd7d83f-0afd-45ae-83dc-fcd35e54ada3" alt="Seções da Aula" width="280" />
+O CertMonitor 360 é o painel administrativo que demonstra competências de defesa, observabilidade e monitoramento de segurança.
 
+Ele fornece uma visão em tempo real da saúde da infraestrutura e dos eventos gerados pelo backend (Nginx + Django).
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/09404fad-9ef6-464b-abaa-1a82f050075f" alt="Painel CertMonitor 360" width="1020"/>
+</p>
 
+---
+
+### Status do Sistema
+
+Monitoramento contínuo de:
+
+- CPU  
+- RAM  
+- Swap (estado de atenção)  
+- Disco  
+
+---
+
+### Alertas Ativos
+
+Notificações em tempo real relacionadas a:
+
+- Anomalias de hardware  
+- Uso excessivo de recursos  
+- Eventos suspeitos de segurança  
+
+---
+
+### Últimos Eventos & Resumo SIEM
+
+Centralização e análise de logs do ambiente, incluindo:
+
+- Requisições HTTP via Nginx  
+- Tentativas de acesso  
+- Origem de IPs  
+- Eventos relevantes do sistema  
+
+---
+
+### Laboratório de Segurança Aplicado
+
+A integração entre o app de aprendizado e o painel operacional cria um ambiente prático de segurança.
+
+Enquanto o usuário estuda conceitos como:
+
+- CIA Triad  
+- Controles de Segurança  
+- Hardening  
+- Threat Detection  
+- Monitoring  
+
+O sistema opera simultaneamente com controles reais de proteção, observabilidade e análise de eventos.
+
+---
+
+==========================
 ARQUITETURA
 
 Flutter (Mobile)
@@ -264,7 +368,6 @@ Gustavo Macedo
 - LinkedIn: https://linkedin.com/in/gustavo-r-macedo-225a636a
 
 ---
+### Licença
 
-LICENCA
-
-MIT License
+![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)
