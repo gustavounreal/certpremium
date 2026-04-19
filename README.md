@@ -32,20 +32,21 @@ Abaixo estão os principais fluxos visuais do projeto:
 A interface móvel, desenvolvida em Flutter, foi projetada para ser limpa e direta, facilitando o consumo de conteúdo técnico denso.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/118fe134-0d75-4f6d-bf85-656b309634d0" alt="Dashboard Principal" width="284" />
+  <img src="https://github.com/user-attachments/assets/3f5745e4-92fc-41bd-8d15-c22e291f6883" alt="Dashboard Principal" width="280"  /> 
+   &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/cf836f0a-05e9-48ad-b9ea-2427f9d25c90" alt="Visão do Domínio" width="280"  />
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/0f639bf6-cfd2-4927-be8d-2ec15786b174" alt="Visão do Domínio" width="280" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/8fbf18a1-e09e-4719-bd1b-9d8a0d5519ad" alt="Aulas do Tópico" width="280" />
+  <img src="https://github.com/user-attachments/assets/a7c9d6bb-a6f3-440d-8b5f-48215defb1d0" alt="Aulas do Tópico"  width="280" />
+  
+
 </p>
 
 
   * Dashboard Intuitivo: Exibe o status do exame, progresso e acesso rápido a estudos e simulados.    
   * Organização por Domínios: O conteúdo é categorizado de acordo com os domínios oficiais da CompTIA SY0-701.    
-  * Fluxo de Tópicos: Navegação hierárquica clara de domínios para tópicos e aulas individuais.
-    
+  * Fluxo de Tópicos: Navegação hierárquica clara de domínios para tópicos e aulas individuais.    
 
-<img src="https://github.com/user-attachments/assets/0551e245-3e27-4bb0-8d33-eb4ede48a082" alt="Seções da Aula"   width="280" />
+  <img src="https://github.com/user-attachments/assets/6cd7d83f-0afd-45ae-83dc-fcd35e54ada3" alt="Seções da Aula" width="280" />
 
 
 
