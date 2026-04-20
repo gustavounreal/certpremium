@@ -1,4 +1,4 @@
-<img width="1374" height="418" alt="logo3" src="https://github.com/user-attachments/assets/b8692bb9-38ba-4fa0-9727-4f497d72a4b4" /># CERTPREMIUM - SECURE SECURITY+ STUDY PLATFORM
+<img width="1374" height="418" alt="logo3" src="https://github.com/user-attachments/assets/b8692bb9-38ba-4fa0-9727-4f497d72a4b4" /> # CERTPREMIUM - SECURE SECURITY+ STUDY PLATFORM
 
 
 ### Qualidade e Segurança
@@ -16,11 +16,11 @@
 ![DevSecOps](https://img.shields.io/badge/DevSecOps-CI%2FCD%20Security-blue)
 ![Threat Model STRIDE](https://img.shields.io/badge/Threat%20Model-STRIDE-blue)
 
-#Plataforma de estudos para certificação CompTIA Security+ (SY0-701) com foco em cibersegurança aplicada, DevSecOps e detecção de ameaças.
+# Plataforma de estudos para certificação CompTIA Security+ (SY0-701) com foco em cibersegurança aplicada, DevSecOps e detecção de ameaças.
 
 ---
 
-SOBRE O PROJETO
+## SOBRE O PROJETO
 
 Esse projeto prático foi desenvolvido para demonstrar competencias reais em ciberseguranca moderna, incluindo:
 
@@ -33,7 +33,7 @@ O projeto funciona como um laboratorio de seguranca aplicado, integrando desenvo
 
 ---
 
-VISAO GERAL E SCREENSHOTS
+## VISAO GERAL E SCREENSHOTS
 
 O CertPremium foi concebido como uma plataforma multi-certificação, utilizando o exame CompTIA Security+ (SY0-701) como projeto piloto para demonstrar um ecossistema completo de aprendizado e segurança aplicada.
 Abaixo estão os principais fluxos visuais do projeto:
