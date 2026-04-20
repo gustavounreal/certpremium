@@ -1,6 +1,5 @@
 <img width="1374" height="418" alt="logo3" src="https://github.com/user-attachments/assets/b8692bb9-38ba-4fa0-9727-4f497d72a4b4" /># CERTPREMIUM - SECURE SECURITY+ STUDY PLATFORM
 
-## BADGES
 
 ### Qualidade e Segurança
 
