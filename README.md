@@ -87,6 +87,17 @@ O CertPremium foi estruturado em uma arquitetura modular, simulando componentes 
 - **Reverse Proxy:** Nginx Proxy Manager para publicação segura, roteamento e gestão de certificados TLS.
 - **Containerização:** Docker Compose para orquestração local e padronização de deploy.
 
+### Threat Modeling (STRIDE)
+
+O projeto utilizou princípios de modelagem de ameaças baseados em STRIDE para orientar controles de segurança:
+
+- Spoofing → Autenticação JWT e rotas protegidas
+- Tampering → Validações backend e serializers
+- Repudiation → Logs estruturados e trilhas de eventos
+- Information Disclosure → Controle de acesso e segregação administrativa
+- Denial of Service → Rate limiting e throttling
+- Elevation of Privilege → Permissões restritas e áreas staff-only
+  
 ### Fluxo da Arquitetura
 
 
