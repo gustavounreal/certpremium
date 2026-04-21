@@ -80,8 +80,9 @@ def _db_healthcheck() -> tuple[bool, float | None, str | None]:
             cur.fetchone()
         latency_ms = (time.perf_counter() - start) * 1000
         return True, round(latency_ms, 2), None
-    except Exception as exc:
-        return False, None, str(exc)[:200]
+    except Exception:
+        logger.exception('Database healthcheck failed')
+        return False, None, 'Database healthcheck failed'
 
 
 def _read_siem_summary(*, max_lines: int = 200) -> dict:
