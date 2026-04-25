@@ -1,108 +1,113 @@
-<img width="2200" height="464" alt="logo final" src="https://github.com/user-attachments/assets/4c7ec459-2086-4cbf-8f10-b3aa588366bb" />
- # CERTPREMIUM | Portfólio Prático de Cibersegurança
+<img width="2210" height="464" alt="logoColorido" src="https://github.com/user-attachments/assets/41ec751b-389f-4e1d-a3c0-806ac0ca4670" />
 
-## Qualidade e Segurança
+ ### CERTPREMIUM | Portfólio Prático de Cibersegurança
+ Disponível para oportunidades em Cybersecurity | AppSec | DevSecOps | SOC
 
+Projeto autoral focado em:
+
+- AppSec
+- DevSecOps
+- Monitoramento
+- APIs Seguras
+- Docker Infrastructure
+
+### Qualidade e Segurança
 [![CI Security Pipeline](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml/badge.svg)](https://github.com/gustavounreal/certpremium/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/gustavounreal/certpremium/actions/workflows/codeql.yml/badge.svg)](https://github.com/gustavounreal/certpremium/actions/workflows/codeql.yml)
-
-## Licença
-
-![License](https://img.shields.io/badge/License-Source%20Available-orange)
-
-## Boas Práticas e Metodologias
-
+### Boas Práticas e Metodologias
 ![OWASP Top 10](https://img.shields.io/badge/OWASP-Top%2010-blue)
 ![DevSecOps](https://img.shields.io/badge/DevSecOps-CI%2FCD%20Security-blue)
 ![Threat Modeling STRIDE](https://img.shields.io/badge/Threat%20Model-STRIDE-blue)
+### Licença
+![License](https://img.shields.io/badge/License-Source%20Available-orange)
 
-Projeto autoral focado em segurança aplicada, arquitetura real e pipeline DevSecOps.
 
-## Portfólio técnico criado para demonstrar competências reais em AppSec, DevSecOps e monitoramento de segurança.
+### Portfólio técnico criado para demonstrar competências em AppSec, DevSecOps e monitoramento de segurança.
 
-## Navegação
+<p align="center">
+<img src="https://github.com/user-attachments/assets/70dc5313-f9cf-48b8-a71b-74a18facfa8c"  alt="mobile+certmonitor" width="720"/>
+</p>
 
-- Highlights
-- Competências
-- Arquitetura Técnica
-- Segurança Implementada
-- Pipeline
-- CertMonitor 360
-- Interface do Aplicativo
-- Como Executar
-- Roadmap
-- Sobre o Autor
-  
+### Navegação
+
+- [Highlights](#highlights)
+- [Competências Demonstradas](#competencias-demonstradas)
+- [Arquitetura Técnica](#arquitetura-tecnica)
+- [Segurança Implementada](#seguranca-implementada)
+- [DevSecOps Pipeline](#devsecops-pipeline)
+- [CertMonitor 360](#certmonitor-360)
+- [Interface do Aplicativo](#interface-do-aplicativo)
+- [Como Executar o Projeto](#como-executar-o-projeto)
+- [Roadmap](#roadmap)
+- [Sobre o Autor](#sobre-o-autor)
+
 ---
 
 ## Highlights
 
-- Backend seguro em Django REST Framework com autenticação JWT e rate limiting.
-- Pipeline DevSecOps com Semgrep, Trivy, CodeQL e Dependabot.
-- CertMonitor 360: painel interno estilo mini-SIEM com logs e sinais de segurança.
-- Logging estruturado em JSON para análise operacional e eventos suspeitos.
-- Infraestrutura containerizada com Docker Compose, PostgreSQL e reverse proxy Nginx.
-- Proteções alinhadas ao OWASP Top 10 aplicadas ao backend.
-- Projeto de portfólio voltado a vagas de SOC, DevSecOps e Segurança da Informação.
+- API segura em Django REST Framework com JWT, permissões e rate limiting.
+- Pipeline CI/CD com validações de segurança automatizadas.
+- Dashboard interno de monitoramento e eventos (CertMonitor 360).
+- Logging estruturado para auditoria e análise operacional.
+- Ambiente real com Docker, PostgreSQL e reverse proxy Nginx.
+- Práticas alinhadas ao OWASP Top 10 e Secure SDLC.
+- Portfólio técnico voltado a AppSec, SOC e DevSecOps.
 
----
-
+  
 ## Competências Demonstradas
 
-- Detecção de Ameaças
+- Application Security (AppSec)
+- DevSecOps
 - Gestão de Vulnerabilidades
+- Monitoramento de Segurança
+- Incident Response Fundamentals
 - Secure SDLC
-- Monitoramento de Incidentes
-- Automação DevSecOps
 - Infraestrutura Segura
+- APIs REST Seguras
   
 ---
 
-## Sobre o Projeto
+### Sobre o Projeto
 
-Este projeto prático foi desenvolvido para demonstrar competências reais em cibersegurança aplicada, utilizando um ambiente full stack com Django REST Framework, Docker e pipeline CI/CD.
+O CertPremium é um laboratório prático de cibersegurança aplicado a um ambiente realista de desenvolvimento.
 
-Principais áreas demonstradas:
+O projeto integra:
 
-- Segurança de aplicações web com práticas alinhadas ao OWASP Top 10
-- Autenticação segura com JWT e controles de rate limiting
-- Monitoramento de eventos e logs estruturados com painel interno CertMonitor 360
-- DevSecOps com validações automatizadas (Semgrep, Trivy e CodeQL)
-- Infraestrutura containerizada com PostgreSQL, Gunicorn e reverse proxy Nginx
+- API segura em Django REST Framework
+- Pipeline CI/CD com scanners automatizados
+- Monitoramento interno com CertMonitor 360
+- Infraestrutura containerizada com Docker e PostgreSQL
 
-O projeto funciona como um laboratório aplicado de segurança, integrando desenvolvimento seguro, visibilidade operacional e automação de controles.
+Objetivo: demonstrar capacidade técnica em AppSec, DevSecOps e operações de segurança.
 
 ---
-
 ## Arquitetura Técnica
 
-O CertPremium foi estruturado em uma arquitetura modular, simulando componentes comuns de ambientes reais de produção, com separação entre aplicação, banco de dados, proxy reverso e controles de segurança.
+O CertPremium utiliza arquitetura modular baseada em múltiplos serviços, separando aplicação, banco de dados, proxy reverso e controles de segurança.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b8868e1d-2bfe-483c-8816-b815ecc6890d" alt="Fluxo da Arquitetura" width="1536" />
+</p>
 
 ### Componentes Principais
 
-- **Frontend Mobile:** Aplicativo em Flutter para consumo de conteúdo técnico e integração com APIs seguras.
-- **Backend API:** Django + Django REST Framework com autenticação JWT, rate limiting e rotas administrativas protegidas.
-- **Banco de Dados:** PostgreSQL 16 com volume persistente para integridade e continuidade dos dados.
-- **Application Server:** Gunicorn para execução do backend em ambiente produtivo.
-- **Reverse Proxy:** Nginx Proxy Manager para publicação segura, roteamento e gestão de certificados TLS.
-- **Containerização:** Docker Compose para orquestração local e padronização de deploy.
+- **Frontend Mobile:** Aplicativo Flutter integrado a APIs seguras.
+- **Backend API:** Django REST Framework com JWT, permissões e rate limiting.
+- **Banco de Dados:** PostgreSQL 16 com persistência em volume dedicado.
+- **Application Server:** Gunicorn para execução em ambiente produtivo.
+- **Reverse Proxy:** Nginx Proxy Manager com roteamento e TLS.
+- **Containerização:** Docker Compose para padronização e orquestração local.
 
-### Threat Modeling (STRIDE)
+### Security by Design (STRIDE)
 
-O projeto utilizou princípios de modelagem de ameaças baseados em STRIDE para orientar controles de segurança:
+Controles aplicados com base em modelagem de ameaças:
 
-- Spoofing → Autenticação JWT e rotas protegidas
-- Tampering → Validações backend e serializers
-- Repudiation → Logs estruturados e trilhas de eventos
-- Information Disclosure → Controle de acesso e segregação administrativa
-- Denial of Service → Rate limiting e throttling
-- Elevation of Privilege → Permissões restritas e áreas staff-only
-  
-### Fluxo da Arquitetura
-
-
-<img src="https://github.com/user-attachments/assets/b8868e1d-2bfe-483c-8816-b815ecc6890d" alt="Fluxo da Arquitetura" width="1536" />
-
+- **Spoofing:** autenticação JWT e rotas protegidas
+- **Tampering:** validações backend e serializers
+- **Repudiation:** logs estruturados e trilhas de eventos
+- **Information Disclosure:** segregação de acesso administrativo
+- **Denial of Service:** throttling e rate limiting
+- **Elevation of Privilege:** permissões restritas e áreas staff-only
 
 ### Controles Técnicos Aplicados
 
@@ -115,112 +120,65 @@ O projeto utilizou princípios de modelagem de ameaças baseados em STRIDE para 
 
 ## Tecnologias Utilizadas
 
-* Flutter / Dart
-* Python
-* Django
-* Django REST Framework
-* PostgreSQL
-* Gunicorn
-* Docker Compose
-* Nginx Proxy Manager
-  
+**Backend**
+- Python
+- Django
+- Django REST Framework
+
+**Frontend**
+- Flutter / Dart
+
+**Infraestrutura**
+- PostgreSQL
+- Gunicorn
+- Docker Compose
+- Nginx Proxy Manager
+
+**Segurança**
+- JWT
+- Semgrep
+- Trivy
+- CodeQL
 ---
-
-## Segurança Implementada
-
-O CertPremium foi desenvolvido com foco em controles reais de segurança aplicados ao ciclo de vida da aplicação, combinando proteção preventiva, monitoramento e validações automatizadas.
-
-### Controles de Aplicação (AppSec)
-
-- Autenticação baseada em JWT utilizando SimpleJWT.
-- Rotação de refresh tokens para maior segurança de sessão.
-- Rate limiting (throttling) para usuários autenticados e anônimos.
-- Rotas administrativas com acesso restrito.
-- Serializers e validações no backend para integridade de dados.
-- Proteções alinhadas às boas práticas do OWASP Top 10.
-
-### Segurança de Infraestrutura
-
-- Reverse proxy com Nginx Proxy Manager.
-- Publicação segura com suporte a TLS/SSL.
-- Isolamento de serviços via containers Docker.
-- Persistência segregada por volumes dedicados.
-- Estrutura preparada para hardening em ambiente Linux.
-
-### Monitoramento e Auditoria
-
-- Logging estruturado em JSON para rastreabilidade.
-- Registro de falhas de login via signals do Django.
-- Monitoramento de requisições via middleware.
-- Identificação de spikes de tráfego e eventos suspeitos.
-- Painel interno CertMonitor 360 para visibilidade operacional.
-
-### Segurança no Desenvolvimento (DevSecOps)
-
-- SAST automatizado com Semgrep.
-- Code Scanning com CodeQL.
-- Scans de dependências e containers com Trivy.
-- Dependabot para atualização contínua de dependências.
-- Pipeline CI/CD com validações de segurança a cada alteração.
-
-### Abordagem de Segurança
-
-- Segurança integrada desde o desenvolvimento (Shift Left Security).
-- Defesa em camadas (Defense in Depth).
-- Automação de controles preventivos e detectivos.
-- Base preparada para evolução contínua.
-  
----
-
 ## DevSecOps Pipeline
 
-O CertPremium utiliza um pipeline de integração contínua orientado à segurança, com validações automatizadas a cada commit ou Pull Request. O objetivo é identificar vulnerabilidades cedo no ciclo de desenvolvimento e reduzir riscos antes do deploy.
+O CertPremium possui pipeline CI/CD orientado à segurança, executando validações automáticas a cada commit ou Pull Request.
+
+Objetivo: detectar riscos cedo no ciclo de desenvolvimento e reduzir exposição antes do deploy.
+
+### Security Checks Automatizados
+
+- SAST com Semgrep
+- Code Scanning com CodeQL
+- Scan de dependências com Trivy
+- Scan de containers com Trivy
+- Dependabot para atualização contínua
 
 ### Fluxo do Pipeline
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6b05b1bf-84a5-4ddd-ad78-4c097b6fc5a9" alt="Fluxo do Pipeline" width="1536" />
+</p>
 
-<img src="https://github.com/user-attachments/assets/6b05b1bf-84a5-4ddd-ad78-4c097b6fc5a9" alt="Fluxo do Pipeline"  width="1536" />
+### Evidências de Execução
 
+<p align="center">
+ <img src="https://github.com/user-attachments/assets/3b88bb40-6d06-4ef6-a728-89133a428fe8"  alt="Evidências do Pipeline" width="1536"  />
+</p>
 
-<img src="https://github.com/user-attachments/assets/5f646905-ceb0-43bb-b621-1eb3b7fbae56"  alt="evidencias" width="1536" />
+### Benefícios Demonstrados
 
----
+- Automação de controles de segurança
+- Validação contínua de código
+- Redução de falhas manuais
+- Segurança integrada ao CI/CD
+- Maior maturidade de desenvolvimento seguro
 
 ## CertMonitor 360
 
-O CertMonitor 360 é um painel administrativo interno desenvolvido para demonstrar competências em monitoramento de segurança, observabilidade e análise operacional. A proposta é simular uma visão inicial de SOC (Security Operations Center), utilizando sinais gerados pelo próprio backend.
+O CertMonitor 360 é um painel administrativo interno criado para demonstrar competências em monitoramento de segurança, observabilidade e análise operacional.
 
-### Objetivos do Painel
-
-- Centralizar indicadores técnicos e eventos relevantes de segurança.
-- Fornecer visibilidade rápida sobre a saúde da aplicação.
-- Apoiar identificação inicial de comportamentos anômalos.
-- Demonstrar capacidade de logging, métricas e monitoramento aplicado.
-
-### Recursos Implementados
-
-- Status geral da infraestrutura e serviços.
-- Registro e contagem de falhas de login.
-- Identificação de spikes de requisições.
-- Top IPs e principais eventos registrados.
-- Leitura de IPs bloqueados (integração best-effort).
-- Pontuação heurística de anomalia (0 a 100).
-- Logs estruturados em JSON para análise posterior.
-
-### Controles de Acesso
-
-- Acesso restrito a usuários administrativos (staff).
-- Rotas protegidas no backend.
-- Painel voltado exclusivamente para uso interno.
-
-### Valor Técnico Demonstrado
-
-- Incident Monitoring
-- Threat Detection
-- Operational Visibility
-- Security Logging
-- Dashboarding
-- Security Analytics
+Inspirado em conceitos utilizados em ambientes SOC, o módulo consolida sinais gerados pelo backend e oferece visão rápida da saúde da aplicação.
 
 ### Demonstração Visual
 
@@ -228,320 +186,205 @@ O CertMonitor 360 é um painel administrativo interno desenvolvido para demonstr
   <img src="https://github.com/user-attachments/assets/09404fad-9ef6-464b-abaa-1a82f050075f" alt="Painel CertMonitor 360" width="1020"/>
 </p>
 
-### Contexto Profissional
+### Objetivos
 
-Este módulo foi criado para representar, em escala de portfólio, conceitos utilizados em ambientes de monitoramento de segurança, SIEM e operações SOC.
+- Centralizar indicadores técnicos e eventos relevantes
+- Fornecer visibilidade operacional rápida
+- Apoiar identificação inicial de comportamentos anômalos
+- Demonstrar logging, métricas e monitoramento aplicado
 
----
+### Recursos Implementados
+
+- Status geral da infraestrutura e serviços
+- Contagem de falhas de login
+- Identificação de spikes de requisições
+- Top IPs e eventos registrados
+- Consulta de IPs bloqueados
+- Pontuação heurística de anomalia (0 a 100)
+- Logs estruturados em JSON
+
+### Controles de Acesso
+
+- Acesso restrito a usuários administrativos
+- Rotas protegidas no backend
+- Uso exclusivamente interno
+
+### Competências Demonstradas
+
+- Incident Monitoring
+- Threat Detection
+- Security Logging
+- Operational Visibility
+- Dashboarding
+- Security Analytics
 
 ## Interface do Aplicativo
 
-O frontend mobile do CertPremium foi desenvolvido em Flutter com foco em usabilidade, organização de conteúdo técnico e integração com APIs seguras. A proposta é oferecer uma experiência objetiva de estudo, demonstrando também competências práticas em desenvolvimento cross-platform.
+O frontend mobile foi desenvolvido em Flutter, integrando experiência do usuário, organização de conteúdo técnico e consumo seguro de APIs.
 
-### Objetivos da Interface
+Demonstra capacidade de entrega full stack, conectando aplicação mobile a backend seguro.
 
-- Facilitar o consumo de conteúdo técnico denso.
-- Organizar trilhas de estudo de forma clara e escalável.
-- Integrar autenticação e consumo seguro de APIs.
-- Demonstrar arquitetura moderna de frontend mobile.
+### Competências Demonstradas
 
-### Competências Técnicas Demonstradas
-
-- Desenvolvimento Mobile com Flutter / Dart
+- Flutter / Dart
 - Integração com APIs REST
-- Navegação estruturada entre módulos
+- Autenticação e consumo seguro de endpoints
+- Navegação estruturada
 - Interface responsiva
 - Componentização de telas
-- Estrutura preparada para múltiplas certificações
 
-### Principais Fluxos Visuais
-
-### Dashboard Intuitivo
-
-Exibe progresso de estudos, status do exame e atalhos rápidos para módulos principais.
+### Visão Geral
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3f5745e4-92fc-41bd-8d15-c22e291f6883" alt="Dashboard Principal" width="240"/>
+  <img  src="https://github.com/user-attachments/assets/d4bbe300-225e-4335-b64c-79792870d6ab" alt="Interface do Aplicativo CertPremium" width="620" />
 </p>
 
----
 
-### Organização por Domínios
+### Funcionalidades Principais
 
-Conteúdo categorizado conforme os domínios oficiais da CompTIA Security+ (SY0-701).
+- Dashboard com progresso e atalhos rápidos
+- Navegação por domínios da certificação
+- Conteúdo organizado por tópicos
+- Trilhas objetivas de revisão
+- Estrutura preparada para expansão futura
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/cf836f0a-05e9-48ad-b9ea-2427f9d25c90" alt="Visão por Domínios" width="240"/>
-</p>
 
----
+## Como Executar
 
-### Fluxo de Tópicos
-
-Navegação hierárquica entre domínios, tópicos e conteúdos específicos.
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/f05552ad-6385-457d-a7a1-88e4b0925a3c" alt="Fluxo de Tópicos" width="240"/>
-</p>
-
----
-
-### Conteúdo Estruturado
-
-Aulas organizadas em blocos objetivos para acelerar revisão e retenção.
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/6cd7d83f-0afd-45ae-83dc-fcd35e54ada3" alt="Conteúdo Estruturado" width="240"/>
-</p>
-
----
-
-### Estratégias de Prova e Armadilhas
-
-Seções voltadas para raciocínio prático, pegadinhas comuns e tomada de decisão em prova.
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/a7c9d6bb-a6f3-440d-8b5f-48215defb1d0" alt="Estratégias de Prova" width="240"/>
-</p>
-
-### Valor Estratégico do Projeto
-
-Além da camada de segurança, o frontend demonstra capacidade de entrega completa de produto, integrando experiência do usuário, backend seguro e arquitetura escalável.
-
----
-
-## Como Executar o Projeto
-
-O CertPremium pode ser executado localmente utilizando Docker Compose, replicando a arquitetura principal do ambiente de desenvolvimento com backend Django, banco PostgreSQL e reverse proxy.
+Execute localmente com Docker Compose.
 
 ### Pré-requisitos
 
-- Docker instalado
-- Docker Compose habilitado
-- Git instalado
+* Docker
+* Docker Compose
+* Git
 
-### 1. Clonar o Repositório
+### 1. Clonar repositório
 
-```
+```bash
 git clone https://github.com/gustavounreal/certpremium.git
 cd certpremium
 ```
-### 2. Subir os Containers
 
-```
+### 2. Iniciar ambiente
+
+```bash
 docker compose up --build
 ```
-Esse comando irá iniciar os principais serviços:
 
-- db → PostgreSQL
-- backend → Django + Gunicorn
-- nginx → Reverse Proxy
+Serviços iniciados:
 
-### 3. Aplicar Migrações
+* db → PostgreSQL
+* backend → Django + Gunicorn
+* nginx → Reverse Proxy
 
-Em outro terminal:
+### 3. Aplicar migrações
 
-```
+```bash
 docker compose exec backend python manage.py migrate
 ```
-### 4. Criar Usuário Administrativo
 
-```
+### 4. Criar usuário administrador
+
+```bash
 docker compose exec backend python manage.py createsuperuser
 ```
-### 5. Acessar o Ambiente
 
-Após a inicialização, os principais endpoints estarão disponíveis:
+### 5. Acessar
 
-- Aplicação Web / Proxy: http://localhost
-- Django Admin: http://localhost/admin
-- CertMonitor 360: http://localhost/api/v1/dashboard/
+* Aplicação: http://localhost
+* Admin: http://localhost/admin
+* CertMonitor 360: http://localhost/api/v1/dashboard/
 
-### Comandos Úteis
+### Comandos úteis
 
-Parar containers
+Parar ambiente:
 
-```
+```bash
 docker compose down
 ```
 
-### Reconstruir ambiente
+Recriar containers:
 
-```
+```bash
 docker compose up --build --force-recreate
 ```
 
-### Ver logs em tempo real
+Ver logs:
 
-```
+```bash
 docker compose logs -f
 ```
-### Observações Técnicas
-- O projeto utiliza containers independentes para aplicação, banco e proxy.
-- Volumes persistentes são utilizados para retenção de dados.
-- Variáveis de ambiente podem ser ajustadas conforme necessidade local.
-- O CertMonitor 360 requer usuário com privilégios administrativos.
 
-  ---
+### Observações
 
-  ## Estrutura do Repositório
+* O dashboard requer usuário administrador.
+* Dados persistem em volumes Docker.
+* Variáveis de ambiente podem ser ajustadas localmente.
 
-O projeto foi organizado de forma modular para separar responsabilidades entre aplicação, infraestrutura, automação e documentação técnica.
+---
+
+## Estrutura do Repositório
 
 ```text
-
 certpremium/
-├── backend/                 # Backend Django + Django REST Framework
-│   ├── certpremium/         # Configurações principais do projeto
-│   ├── core/                # Views, APIs, templates e lógica principal
-│   ├── manage.py
-│   └── Dockerfile
-│
-├── nginx/                   # Dados e volumes do Nginx Proxy Manager
-│
-├── .github/
-│   └── workflows/           # Pipelines CI/CD e Code Scanning
-│       ├── ci.yml
-│       └── codeql.yml
-│
-├── docker-compose.yml       # Orquestração dos serviços
-├── requirements.txt         # Dependências Python (quando aplicável)
-├── README.md                # Documentação principal
-└── LICENSE                  # Termos de uso e licença
+├── backend/              # Django + DRF
+├── nginx/                # Proxy reverso
+├── .github/workflows/    # CI/CD e Code Scanning
+├── docker-compose.yml
+├── README.md
+└── LICENSE
 ```
-### Organização por Camadas
 
- - Aplicação: Backend Django/DRF e frontend mobile (Flutter em evolução/integrado separadamente).
- - Infraestrutura: Docker Compose, PostgreSQL e reverse proxy Nginx.
- - Segurança: Pipelines automatizados, scanners e controles de acesso.
- - Observabilidade: CertMonitor 360, logs estruturados e sinais operacionais.
- - Documentação: README e materiais técnicos de apoio.
-   
-### Benefícios da Estrutura
+### Organização
 
- - Separação clara de responsabilidades.
- - Facilidade de manutenção e escalabilidade.
- - Evolução incremental por módulos.
- - Ambiente preparado para práticas profissionais de desenvolvimento seguro.
+* Aplicação: backend Django/DRF e frontend mobile
+* Infraestrutura: Docker, PostgreSQL e Nginx
+* Segurança: scanners, pipelines e controles de acesso
+* Observabilidade: CertMonitor 360 e logs estruturados
 
 ---
 
 ## Roadmap
 
-O CertPremium segue uma evolução contínua orientada a segurança aplicada, qualidade de software e maturidade operacional.
-
-### Curto Prazo
-
-- Ampliação da integração entre frontend Flutter e backend Django REST Framework.
-- Refinamento visual e funcional do CertMonitor 360.
-- Melhoria da cobertura de logs e eventos operacionais.
-- Otimizações de performance e usabilidade da aplicação.
-
-### Segurança e DevSecOps
-
-- Evolução das políticas de security gates no CI/CD.
-- Expansão das regras SAST e quality checks.
-- Testes automatizados integrados ao pipeline.
-- Hardening adicional dos ambientes de execução.
-- Melhor gestão de segredos e variáveis sensíveis.
-
-### Monitoramento e Observabilidade
-
-- Novos indicadores operacionais no CertMonitor 360.
-- Health checks dedicados para serviços críticos.
-- Alertas baseados em comportamento anômalo.
-- Métricas históricas e tendências de eventos.
-
-### Produto e Escalabilidade
-
-- Estrutura preparada para múltiplas certificações além da Security+.
-- Evolução da arquitetura para novos módulos educacionais.
-- Escalabilidade para novos usuários e novos conteúdos.
-- Melhorias contínuas na experiência mobile.
-
-### Visão de Longo Prazo
-
-- Consolidar o projeto como portfólio técnico de referência em cibersegurança aplicada.
-- Evoluir para plataforma comercial de educação em segurança digital.
-- Demonstrar competências reais em AppSec, SOC e DevSecOps em ambiente público.
+* Evoluir integração Flutter + backend
+* Expandir regras de segurança no CI/CD
+* Melhorar métricas e alertas no CertMonitor 360
+* Aumentar cobertura de testes
+* Hardening adicional da infraestrutura
+* Escalar para novos módulos e conteúdos
 
 ---
 
-## Lições Técnicas / Desafios Resolvidos
+## Lições Técnicas
 
-Durante o desenvolvimento do CertPremium, diversos desafios reais de arquitetura, segurança e operação foram tratados na prática, contribuindo para a evolução técnica do projeto.
-
-### Arquitetura e Infraestrutura
-
-- Estruturação de ambiente containerizado com múltiplos serviços integrados.
-- Comunicação entre containers de aplicação, banco de dados e proxy reverso.
-- Persistência de dados com volumes dedicados.
-- Padronização de ambiente para desenvolvimento e execução local.
-
-### Backend e Segurança
-
-- Implementação de autenticação segura com JWT.
-- Aplicação de rate limiting para mitigação de abuso de requisições.
-- Restrição de acesso a rotas administrativas.
-- Organização do backend para crescimento modular e manutenção contínua.
-
-### Monitoramento e Observabilidade
-
-- Criação de logging estruturado em JSON para rastreabilidade.
-- Captura de falhas de login e eventos relevantes.
-- Identificação de spikes de requisições e padrões suspeitos.
-- Construção do CertMonitor 360 como painel interno de visibilidade operacional.
-
-### DevSecOps
-
-- Integração de pipeline CI/CD com validações automáticas.
-- Uso combinado de Semgrep, Trivy e CodeQL.
-- Geração de evidências de segurança no GitHub Security Tab.
-- Automação de verificações repetitivas para reduzir risco operacional.
-
-### Aprendizados Estratégicos
-
-- Segurança deve ser incorporada desde o início do projeto.
-- Observabilidade reduz tempo de diagnóstico e resposta.
-- Automação aumenta consistência e confiabilidade.
-- Documentação clara acelera manutenção e evolução técnica.
-- Projetos públicos podem funcionar como prova prática de competência profissional.
+* Segurança integrada desde o início do projeto
+* Automação reduz falhas operacionais
+* Observabilidade acelera diagnóstico
+* Arquitetura modular facilita evolução
+* Projeto público como prova prática de competência
 
 ---
-
 
 ## Sobre o Autor
 
+Gustavo R Macedo
+---
 Profissional de TI com foco em cibersegurança aplicada, desenvolvimento seguro e automação.
 
-### Contato Profissional
-
-Gustavo R Macedo
-
-- GitHub: https://github.com/gustavounreal
-- LinkedIn: https://linkedin.com/in/gustavo-r-macedo-225a636a
+* GitHub: https://github.com/gustavounreal
+* LinkedIn: https://linkedin.com/in/gustavo-r-macedo-225a636a
 
 ---
 
 ## Licença
 
-Copyright © 2026 Gustavo Ribeiro. Todos os direitos reservados.
+Copyright © 2026 Gustavo Ribeiro.
 
-Este repositório é disponibilizado publicamente para fins de portfólio, demonstração técnica, estudo individual e avaliação profissional.
+Uso permitido para estudo, análise técnica e portfólio.
+Redistribuição comercial ou reutilização integral do projeto não autorizadas.
 
-É permitido:
+---
 
-- Visualizar o código-fonte publicamente no GitHub.
-- Clonar e executar localmente para testes, aprendizado e análise técnica.
-- Utilizar como referência educacional sem redistribuição.
-
-Não é permitido:
-
-- Copiar integral ou parcialmente este projeto para fins comerciais.
-- Revender, sublicenciar ou redistribuir o código-fonte.
-- Publicar versões derivadas como produto próprio.
-- Utilizar marca, identidade visual, nome CertPremium ou materiais relacionados.
-- Hospedar versões públicas ou privadas com finalidade comercial.
-
-Para parcerias, licenciamento ou uso autorizado, entre em contato.
+Se este projeto foi útil, considere deixar uma estrela no repositório.
 
