@@ -222,6 +222,8 @@ Inspirado em conceitos utilizados em ambientes SOC, o módulo consolida sinais g
 
 O frontend mobile foi desenvolvido em Flutter, integrando experiência do usuário, organização de conteúdo técnico e consumo seguro de APIs.
 
+Status atual: MVP funcional operando localmente, com foco em integração segura, validação de arquitetura e evolução contínua antes de publicação pública.
+
 Demonstra capacidade de entrega full stack, conectando aplicação mobile a backend seguro.
 
 ### Competências Demonstradas
@@ -236,8 +238,10 @@ Demonstra capacidade de entrega full stack, conectando aplicação mobile a back
 ### Visão Geral
 
 <p align="center">
-  <img  src="https://github.com/user-attachments/assets/d4bbe300-225e-4335-b64c-79792870d6ab" alt="Interface do Aplicativo CertPremium" width="620" />
-</p>
+
+<img width="720" alt="mosaicoFinal" src="https://github.com/user-attachments/assets/77e0f706-da45-47b3-b946-733cc6e3d22e" />
+
+ </p>
 
 
 ### Funcionalidades Principais
