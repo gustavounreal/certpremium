@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 
 # ==== SEGURANÇA: Nunca hardcorad secrets! ====
-SECRET_KEY = os.getenv("SECRET_KEY", "fallback-apenas-para-build")
+SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "0") == "1"
 
 #Hosts permitidos (ajuste para seu domínio)
