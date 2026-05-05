@@ -39,6 +39,18 @@ services:
     networks:
       - cert_network
 
+  # --- FRONTEND (landing + portifólio) ---  
+  frontend:
+     image: nginx:alpine
+     container_name: cert_frontend
+     restart: always
+     volumes:
+       - ./frontend/landing:/usr/share/nginx/html:ro
+       - ./frontend/portifolio:/usr/share/nginx/html/portifolio:ro  
+     networks:
+       - cert_network
+
+
   # --- REVERSE PROXY E WAF (Nginx Proxy Manager) ---
   nginx:
     image: 'jc21/nginx-proxy-manager:latest'
